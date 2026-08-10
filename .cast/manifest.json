@@ -1,0 +1,42 @@
+{
+  "coverage": {
+    "repo_url": "https://github.com/bitwuzla/bitwuzla.git",
+    "extra_repos": [],
+    "setup_command": "sudo apt-get update && sudo apt-get install -y ninja-build meson libgmp-dev libmpfr-dev pkg-config && ./configure.py --prefix=\"$(pwd)/build/install\" --testing --no-unit-testing",
+    "list_tests_command": "jq -r 'range(0;length)' bitwuzla/build/meson-info/intro-tests.json",
+    "run_test_command": "TEST_CMD=$(jq -r '.[{test}].cmd | @sh' bitwuzla/build/meson-info/intro-tests.json); eval timeout \"${TEST_TIMEOUT:-120}\" $TEST_CMD",
+    "target_jobs": 4,
+    "avg_test_time_seconds": 1.0,
+    "oracle_solver": null,
+    "oracle_fetch": null
+  },
+  "fuzzer": {
+    "repo_url": "https://github.com/bitwuzla/bitwuzla.git",
+    "extra_repos": [],
+    "extra_pip_packages": [],
+    "tests_root": "test/regress",
+    "list_tests_command": "find test/regress -type f -name '*.smt2' | sed 's#^test/regress/##' | sort",
+    "target_binary_path": "./build/src/main/bitwuzla",
+    "oracle_solver": "z3",
+    "oracle_fetch_fallback": {
+      "type": "pip",
+      "package": "z3-solver"
+    },
+    "resources": {
+      "max_workers": null,
+      "max_jobs": 9,
+      "cpu_warning": 85.0,
+      "cpu_critical": 95.0,
+      "memory_warning_available_gb": 2.0,
+      "memory_critical_available_gb": 0.5,
+      "check_interval": 2,
+      "pause_duration": 10,
+      "max_process_memory_mb": 2048,
+      "max_process_memory_mb_warning": 1536
+    },
+    "skip_sut_clone_if_binary_cached": false,
+    "git_cleanup_dirs": ["bitwuzla", "yinyang"],
+    "namespace_prefix": "",
+    "clang_args": []
+  }
+}
