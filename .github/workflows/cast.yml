@@ -85,8 +85,4 @@ jobs:
       repo_url: ${{ github.server_url }}/${{ github.repository }}
       solver_dir: bitwuzla/.cast
       commit_hash: ${{ inputs.commit_hash }}
-      # bitwuzla's fuzzer.clang_args (for coverage-selected test targeting)
-      # hasn't been tuned yet - fuzz the full seed corpus for now instead of
-      # a coverage-selected subset until that's filled in.
-      no_coverage: true
     secrets: inherit
