@@ -17,10 +17,12 @@
     "tests_root": "test/regress",
     "list_tests_command": "find test/regress -type f -name '*.smt2' | sed 's#^test/regress/##' | sort",
     "target_binary_path": "./build/src/main/bitwuzla",
-    "oracle_solver": "z3",
+    "oracle_solver": "cvc5",
     "oracle_fetch_fallback": {
-      "type": "pip",
-      "package": "z3-solver"
+      "type": "github_release",
+      "repo": "cvc5/cvc5",
+      "asset_keywords": ["linux", "x86_64", "static"],
+      "binary_name": "cvc5"
     },
     "resources": {
       "max_workers": null,
