@@ -1,7 +1,0 @@
-(set-option :produce-interpolants 1)
-(declare-const x Bool)
-(assert x)
-(set-info :status sat)
-(check-sat-assuming (true))
-(set-info :status sat)
-(check-sat)

@@ -1,5 +1,0 @@
-(set-info :status sat)
-(declare-const C (_ BitVec 1))
-(declare-fun V () (_ BitVec 32))
-(assert (not (= V (bvsub ((_ zero_extend 31) C) (_ bv1 32)))))
-(check-sat)

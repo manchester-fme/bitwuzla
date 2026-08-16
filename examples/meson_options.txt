@@ -1,2 +1,0 @@
-option('python', type: 'boolean', value: false)
-option('python_path', type: 'string', value: '')

@@ -1,6 +1,0 @@
-(set-option :global-declarations true)
-(set-option :abstraction true)
-(set-option :abstraction-ite true)
-(declare-const _x0 (_ FloatingPoint 11 53))
-(set-info :status sat)
-(check-sat-assuming ( (fp.isNaN _x0)))
