@@ -1,4 +1,5 @@
 {
+  "solver": "bitwuzla",
   "coverage": {
     "repo_url": "https://github.com/bitwuzla/bitwuzla.git",
     "extra_repos": [],
