@@ -21,7 +21,11 @@
     "oracle_fetch_fallback": {
       "type": "github_release",
       "repo": "cvc5/cvc5",
-      "asset_keywords": ["linux", "x86_64", "static"],
+      "asset_keywords": [
+        "linux",
+        "x86_64",
+        "static"
+      ],
       "binary_name": "cvc5"
     },
     "resources": {
@@ -37,8 +41,12 @@
       "max_process_memory_mb_warning": 1536
     },
     "skip_sut_clone_if_binary_cached": false,
-    "git_cleanup_dirs": ["bitwuzla", "yinyang"],
+    "git_cleanup_dirs": [
+      "bitwuzla",
+      "yinyang"
+    ],
     "namespace_prefix": "",
-    "clang_args": []
+    "clang_args": [],
+    "solver_cli": ""
   }
 }
