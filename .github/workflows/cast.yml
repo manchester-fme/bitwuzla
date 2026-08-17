@@ -75,7 +75,7 @@ jobs:
   manager:
     name: CAST Manager
     if: inputs.action == 'manager' || inputs.action == 'cycle' || github.event.schedule == '0 * * * *'
-    uses: manchester-fme/CAST/.github/workflows/manager.yml@v0.3.0
+    uses: manchester-fme/CAST/.github/workflows/manager.yml@v0.4.0
     with:
       solver: bitwuzla
       repo_url: https://github.com/bitwuzla/bitwuzla
@@ -92,7 +92,7 @@ jobs:
         github.event.schedule == '0 0,6,12,18 * * *' ||
         (inputs.action == 'cycle' && needs.manager.result == 'success')
       )
-    uses: manchester-fme/CAST/.github/workflows/build.yml@v0.3.0
+    uses: manchester-fme/CAST/.github/workflows/build.yml@v0.4.0
     with:
       solver: bitwuzla
       repo_url: https://github.com/bitwuzla/bitwuzla
@@ -114,7 +114,7 @@ jobs:
         github.event.schedule == '0 0,6,12,18 * * *' ||
         (inputs.action == 'cycle' && needs.build.result == 'success')
       )
-    uses: manchester-fme/CAST/.github/workflows/commit-fuzzer.yml@v0.3.0
+    uses: manchester-fme/CAST/.github/workflows/commit-fuzzer.yml@v0.4.0
     with:
       solver: bitwuzla
       repo_url: https://github.com/bitwuzla/bitwuzla
@@ -132,13 +132,11 @@ jobs:
         github.event.schedule == '0 0,6,12,18 * * *' ||
         (inputs.action == 'cycle' && needs.fuzz.result == 'success')
       )
-    uses: manchester-fme/CAST/.github/workflows/triage.yml@v0.3.0
+    uses: manchester-fme/CAST/.github/workflows/triage.yml@v0.4.0
     with:
       solver: bitwuzla
       repo_url: ${{ github.server_url }}/${{ github.repository }}  # this fork -- triage only ever reads manifest.json, never builds source
       solver_dir: bitwuzla/.cast
-      target_cmd: "bitwuzla"  # matches fuzz-time exactly: bitwuzla has no entry in KNOWN_SOLVER_EXTRA_ARGS (src/commit_fuzzer/simple_commit_fuzzer.py), so fuzzing invokes it bare too
-      oracle_cmd: "cvc5 --check-models --check-proofs --strings-exp -q"  # per .cast/manifest.json's fuzzer.oracle_solver; must exactly match KNOWN_SOLVER_EXTRA_ARGS['cvc5']
       # archive/commit_hash forward the top-level inputs (both empty on a
       # schedule tick or a plain action=triage, which auto-discovers the
       # latest of each). commit_hash lets a standalone triage run pin the
@@ -154,7 +152,7 @@ jobs:
   daily-check:
     name: CAST Daily Check
     if: inputs.action == 'daily-check' || github.event.schedule == '30 3 * * *'
-    uses: manchester-fme/CAST/.github/workflows/coverage-daily-check.yml@v0.3.0
+    uses: manchester-fme/CAST/.github/workflows/coverage-daily-check.yml@v0.4.0
     with:
       solver: bitwuzla
       repo_url: https://github.com/bitwuzla/bitwuzla
